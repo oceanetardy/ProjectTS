@@ -18,11 +18,12 @@ app.get('/', async (req : Request, res:Response)=>{
         email : "test@test.com",
         name : "Name test"
     });
-    await user.save()
+    await user.save();
+    res.json(user);
 });
 
 const dbConnect = async ():Promise<void> =>{
-    const uri : string = "mongodb+srv://oceane:7XHQCopt3B7PbxNN@cluster0.av0pf2z.mongodb.net/?retryWrites=true&w=majority"
+    const uri : string = "mongodb+srv://oceane:7XHQCopt3B7PbxNN@cluster0.av0pf2z.mongodb.net/testbase?retryWrites=true&w=majority"
     try {
         const cnx = await connect(uri);
         console.log('Mongo connecté', cnx)
