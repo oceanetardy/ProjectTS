@@ -13,6 +13,13 @@ app.get('/users',  getAllUsers );
 app.post('/users', addUser);
 
 
+/**TODO
+ * Route pour les tâches : /tasks  --> addTask (post) -> getAllTask (get)
+ * Route pour une tâche : /tasks/:id (get)
+ * Route pour les tâches d'un utilisateurs : /users/:id/tasks  --> getZllTaskByUser (get)
+ * Route pour delete : /tasks/:id
+ */
+
 
 const dbConnect = async ():Promise<void> =>{
     const uri : string = "mongodb+srv://oceane:7XHQCopt3B7PbxNN@cluster0.av0pf2z.mongodb.net/testbase?retryWrites=true&w=majority"
