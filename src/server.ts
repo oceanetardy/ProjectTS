@@ -8,8 +8,8 @@ const app :Application = express();
 app.use(express.json());
 
 //Routes pour users
-app.get('/users',  getAllUsers );
 app.get('/users/:id', getUserById);
+app.get('/users',  getAllUsers );
 app.post('/users', addUser);
 
 

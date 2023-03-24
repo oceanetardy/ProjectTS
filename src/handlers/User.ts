@@ -10,8 +10,7 @@ const addUser = async (req: Request, res: Response):Promise<void>=> {
     }catch (e){
         res.status(500).send("error")
     }
-
-res.json(user);
+    res.json(user);
 }
 
 // gerUserById
@@ -20,9 +19,12 @@ const getUserById = async (req: Request, res: Response):Promise<void> => {
     const id = req.params.id;
     try {
         const user = await User.findById(id);
-        user ? res.json(user) : res.status(404).send
+        user ? res.json(user) : res.status(404).send({error : {
+            code : 404,
+                message : "Not Found"
+            }})
     } catch (e){
-        res.status(500).send('error server');
+        res.status(500).send("error")
     }
 
 }
