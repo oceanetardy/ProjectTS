@@ -1,32 +1,24 @@
 import express, { Application, Request, Response} from 'express';
 import {connect} from 'mongoose';
-import {IUser, User} from "./models/User";
-import home from './handlers/home';
+import {getAllUsers, getUserById, addUser} from "./handlers/User";
 
 const port : number = 8080;
 
 const app :Application = express();
+app.use(express.json());
 
-// app.get('/', (req : Request,res:Response )=>{
-//     res.json('Test réussi');
-// })
+//Routes pour users
+app.get('/users',  getAllUsers );
+app.get('/users/:id', getUserById);
+app.get('/users', addUser);
 
-// app.get('/', home);
 
-app.get('/', async (req : Request, res:Response)=>{
-    const user= new User({
-        email : "test@test.com",
-        name : "Name test"
-    });
-    await user.save();
-    res.json(user);
-});
 
 const dbConnect = async ():Promise<void> =>{
     const uri : string = "mongodb+srv://oceane:7XHQCopt3B7PbxNN@cluster0.av0pf2z.mongodb.net/testbase?retryWrites=true&w=majority"
     try {
         const cnx = await connect(uri);
-        console.log('Mongo connecté', cnx)
+        console.log('Mongo connecté')
     } catch (error){
         console.log(error);
     }
