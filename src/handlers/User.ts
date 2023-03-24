@@ -2,7 +2,8 @@
 import {Request, Response} from "express";
 import {IUser, User} from "../models/User";
 
-const addUser = async (req: Request, res: Response):Promise<IUser>=> {
+const addUser = async (req: Request, res: Response):Promise<void>=> {
+    console.log('BODY --- ', req.body);
     const user = new User(req.body);
     try{
         await user.save();
@@ -10,18 +11,25 @@ const addUser = async (req: Request, res: Response):Promise<IUser>=> {
         res.status(500).send("error")
     }
 
-    return user;
+res.json(user);
 }
 
 // gerUserById
 
-const getUserById = (req: Request, res: Response) => {
+const getUserById = async (req: Request, res: Response):Promise<void> => {
+    const id = req.params.id;
+    try {
+        const user = await User.findById(id);
+        user ? res.json(user) : res.status(404).send
+    } catch (e){
+        res.status(500).send('error server');
+    }
 
 }
 
 // getAllUsers
 
-const getAllUsers = (req: Request, res: Response) => {
+const getAllUsers = async (req: Request, res: Response):Promise<void>=> {
 
 }
 
