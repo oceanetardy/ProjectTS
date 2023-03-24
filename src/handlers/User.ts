@@ -33,7 +33,7 @@ const getUserById = async (req: Request, res: Response):Promise<void> => {
 
 const getAllUsers = async (req: Request, res: Response):Promise<void>=> {
     try {
-        const users = await User.find();
+        const users:IUser[]= await User.find();
         users ? res.json(users) : res.status(404).send({error : {
                 code : 404,
                 message : "Not Found"
