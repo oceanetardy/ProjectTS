@@ -1,5 +1,5 @@
-import express, {Request, Response, Application} from 'express';
-import mongoose,{Connection, connect} from 'mongoose';
+import express, { Application} from 'express';
+import {connect} from 'mongoose';
 import home from './handlers/home';
 
 const port : number = 8080;
