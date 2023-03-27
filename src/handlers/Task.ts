@@ -47,4 +47,23 @@ const getAllTasks = async (req: Request, res: Response):Promise<void>=> {
     }
 }
 
-export {addTask, getTaskById, getAllTasks}
+
+const deleteTask = async (req: Request, res: Response):Promise<void> => {
+    const id = req.params.id;
+    try {
+        const task = await Task.findById(id);
+        await  Task.findByIdAndDelete(id);
+        task ? res.json(task) : res.status(404).send({error : {
+                code : 404,
+                message : "Not Found"
+            }})
+    } catch (e){
+        res.status(500).json({error : e})
+    }
+
+}
+
+
+
+
+export {addTask, getTaskById, getAllTasks, deleteTask}
