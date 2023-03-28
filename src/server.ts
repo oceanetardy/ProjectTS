@@ -1,7 +1,7 @@
 import express, { Application, Request, Response} from 'express';
 import {connect} from 'mongoose';
 import {getAllUsers, getUserById, addUser} from "./handlers/User";
-import {getAllTasks, getTaskById, addTask, deleteTask} from "./handlers/Task";
+import {getAllTasks, getTaskById, addTask, deleteTask, getAllTasksByUser} from "./handlers/Task";
 
 
 const port : number = 8080;
@@ -19,6 +19,7 @@ app.get('/tasks/:id', getTaskById);
 app.get('/tasks/',  getAllTasks );
 app.post('/tasks', addTask);
 app.get('/tasks/delete/:id', deleteTask);
+app.get('/users/:id/tasks', getAllTasksByUser);
 
 
 

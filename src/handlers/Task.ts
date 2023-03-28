@@ -6,14 +6,15 @@
 import {Request, Response} from "express";
 import {ITask, Task} from "../models/Task";
 
+
 const addTask = async (req: Request, res: Response):Promise<void>=> {
-    console.log('BODY --- ', req.body);
+    // console.log('BODY --- ', req.body);
     const task = new Task(req.body);
     try{
         await task.save();
         res.json(task);
     }catch (e){
-        res.status(500).send("error")
+        res.status(500).send({error : e})
     }
 }
 
@@ -64,6 +65,19 @@ const deleteTask = async (req: Request, res: Response):Promise<void> => {
 }
 
 
+const getAllTasksByUser = async (req: Request, res: Response):Promise<void>=> {
+    const idUser = req.params.id;
+    try {
+        const tasks:ITask[]= await Task.find({idUser: idUser});
+        tasks ? res.json(tasks) : res.status(404).send({error : {
+                code : 404,
+                message : "Not Found"
+            }})
+    } catch (e){
+        res.status(500).json({error : e})
+    }
+}
 
 
-export {addTask, getTaskById, getAllTasks, deleteTask}
+
+export {addTask, getTaskById, getAllTasks, deleteTask, getAllTasksByUser}

@@ -15,6 +15,7 @@
 import {Schema , Model , model} from "mongoose";
 
 interface ITask{
+    idUser : string;
     name : string;
     detail : string;
     status : boolean;
@@ -22,9 +23,12 @@ interface ITask{
 }
 
 const TaskSchema = new Schema<ITask>({
+    idUser : {
+        type : String,
+        required : true
+    },
     name : {
         type : String,
-        unique : true,
         required : true
     },
     detail : {
