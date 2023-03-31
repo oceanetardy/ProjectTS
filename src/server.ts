@@ -32,7 +32,7 @@ app.get('/users/:id/tasks', getAllTasksByUser);
 
 
 const dbConnect = async ():Promise<void> =>{
-    const uri : string = "mongodb+srv://oceane:7XHQCopt3B7PbxNN@cluster0.av0pf2z.mongodb.net/testbase?retryWrites=true&w=majority"
+    const uri : string = "mongodb+srv://oceane:7XHQCopt3B7PbxNN@cluster0.av0pf2z.mongodb.net/DatabaseTSProject?retryWrites=true&w=majority"
     try {
         const cnx = await connect(uri);
         console.log('Mongo connecté')
