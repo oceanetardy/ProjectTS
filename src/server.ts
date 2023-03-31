@@ -8,6 +8,8 @@ const port : number = 8080;
 
 const app :Application = express();
 app.use(express.json());
+// app.use(cors())
+
 
 //Routes pour users
 app.get('/users/:id', getUserById);
