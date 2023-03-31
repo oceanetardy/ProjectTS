@@ -2,13 +2,13 @@ import express, { Application, Request, Response} from 'express';
 import {connect} from 'mongoose';
 import {getAllUsers, getUserById, addUser} from "./handlers/User";
 import {getAllTasks, getTaskById, addTask, deleteTask, getAllTasksByUser} from "./handlers/Task";
-
+import cors from 'cors';
 
 const port : number = 8080;
 
 const app :Application = express();
 app.use(express.json());
-// app.use(cors())
+app.use(cors());
 
 
 //Routes pour users
