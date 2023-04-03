@@ -1,6 +1,7 @@
 // create user
 import {Request, Response} from "express";
 import {IUser, User} from "../models/User";
+import {Task} from "../models/Task";
 
 const addUser = async (req: Request, res: Response):Promise<void>=> {
     console.log('BODY --- ', req.body);
@@ -43,4 +44,20 @@ const getAllUsers = async (req: Request, res: Response):Promise<void>=> {
     }
 }
 
-export {addUser, getUserById, getAllUsers}
+
+const deleteUser = async (req: Request, res: Response):Promise<void> => {
+    const id = req.params.id;
+    try {
+        const user = await User.findById(id);
+        await  User.findByIdAndDelete(id);
+        user ? res.json(user) : res.status(404).send({error : {
+                code : 404,
+                message : "Not Found"
+            }})
+    } catch (e){
+        res.status(500).json({error : e})
+    }
+
+}
+
+export {addUser, getUserById, getAllUsers, deleteUser}
