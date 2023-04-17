@@ -28,11 +28,8 @@ app.get('/users/:id/tasks', getAllTasksByUser);
 
 
 /**TODO
- * Route pour les tâches : /tasks  --> addTask (post) -> getAllTask (get)
- * Route pour une tâche : /tasks/:id (get)
- * Route pour les tâches d'un utilisateurs : /users/:id/tasks  --> getZllTaskByUser (get)
- * Route pour delete : /tasks/:id
- */
+ * Ajouter task by user
+*/
 
 
 const dbConnect = async ():Promise<void> =>{
