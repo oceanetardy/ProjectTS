@@ -12,20 +12,23 @@
  */
 
 
-import {Schema , Model , model} from "mongoose";
+import {Schema , Model , model, ObjectId} from "mongoose";
+import { User, IUser } from "./User";
+
 
 interface ITask{
-    idUser : string;
+    user : ObjectId | IUser;
     name : string;
     detail : string;
-    status : boolean;
+    status : string;
     date : Date;
 }
 
 const TaskSchema = new Schema<ITask>({
-    idUser : {
-        type : String,
-        required : true
+    user : {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     name : {
         type : String,
@@ -35,7 +38,7 @@ const TaskSchema = new Schema<ITask>({
         type : String
     },
     status : {
-        type: Boolean,
+        type: String,
         required : true
     },
     date : {
