@@ -14,10 +14,11 @@
 
 import {Schema , Model , model, ObjectId} from "mongoose";
 import { User, IUser } from "./User";
+import {strict} from "assert";
 
 
 interface ITask{
-    user : ObjectId | IUser;
+    idUser : string;
     name : string;
     detail : string;
     status : string;
@@ -25,10 +26,8 @@ interface ITask{
 }
 
 const TaskSchema = new Schema<ITask>({
-    user : {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+    idUser : {
+        type: String
     },
     name : {
         type : String,
