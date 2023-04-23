@@ -18,7 +18,7 @@ import {strict} from "assert";
 
 
 interface ITask{
-    idUser : string;
+    user : Schema.Types.ObjectId;
     name : string;
     detail : string;
     status : string;
@@ -26,8 +26,9 @@ interface ITask{
 }
 
 const TaskSchema = new Schema<ITask>({
-    idUser : {
-        type: String
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     name : {
         type : String,

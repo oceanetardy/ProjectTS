@@ -65,19 +65,22 @@ const deleteTask = async (req: Request, res: Response):Promise<void> => {
 }
 
 
-const getAllTasksByUser = async (req: Request, res: Response):Promise<void>=> {
-    const idUser = req.params.id;
+const getTasksByUser = async (request: Request, response: Response): Promise<void> => {
+
+    const id = request.params.id;
+
     try {
-        const tasks:ITask[]= await Task.find({idUser: idUser});
-        tasks ? res.json(tasks) : res.status(404).send({error : {
+        const task : ITask[] = await Task.find({"user": id});
+        task ? response.json(task) : response.status(404).send({error : {
                 code : 404,
-                message : "Not Found"
-            }})
-    } catch (e){
-        res.status(500).json({error : e})
+                message : "Not found"
+            }});
+    }catch(error) {
+        response.status(500).json({error : error});
     }
+
 }
 
 
 
-export {addTask, getTaskById, getAllTasks, deleteTask, getAllTasksByUser}
+export {addTask, getTaskById, getAllTasks, deleteTask, getTasksByUser}
