@@ -14,6 +14,7 @@ const addTask = async (req: Request, res: Response):Promise<void>=> {
         await task.save();
         res.json(task);
     }catch (e){
+        console.log(e)
         res.status(500).send({error : e})
     }
 }
