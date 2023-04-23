@@ -19,6 +19,24 @@ const addTask = async (req: Request, res: Response):Promise<void>=> {
     }
 }
 
+const updateTask = async (req: Request, res: Response): Promise<void> =>
+{
+    console.log()
+    // Récupération de l'identifiant de la tâche
+    const id: string = req.params.id;
+
+    // Try-catch de la modification
+    try {
+        // Modification de la tâche
+        await Task.findByIdAndUpdate(id, req.body);
+        // Retour de la tâche
+        res.status(200).json(await Task.findById(id));
+    } catch (error) {
+        // Retour de l'erreur
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
 // gerTaskById
 
 const getTaskById = async (req: Request, res: Response):Promise<void> => {
@@ -84,4 +102,4 @@ const getTasksByUser = async (request: Request, response: Response): Promise<voi
 
 
 
-export {addTask, getTaskById, getAllTasks, deleteTask, getTasksByUser}
+export {addTask, getTaskById, getAllTasks, deleteTask, getTasksByUser, updateTask}
