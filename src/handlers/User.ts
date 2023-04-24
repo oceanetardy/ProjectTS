@@ -1,7 +1,6 @@
 // create user
 import {Request, Response} from "express";
 import {IUser, User} from "../models/User";
-import {Task} from "../models/Task";
 
 const addUser = async (req: Request, res: Response):Promise<void>=> {
     console.log('BODY --- ', req.body);

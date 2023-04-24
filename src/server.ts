@@ -1,4 +1,4 @@
-import express, { Application, Request, Response} from 'express';
+import express, { Application} from 'express';
 import {connect} from 'mongoose';
 import {getAllUsers, getUserById, addUser, deleteUser} from "./handlers/User";
 import {getAllTasks, getTaskById, addTask, deleteTask, getTasksByUser, updateTask} from "./handlers/Task";
@@ -27,10 +27,6 @@ app.get('/tasks/delete/:id', deleteTask);
 app.get('/users/:id/tasks', getTasksByUser);
 
 
-
-/**TODO
- * Ajouter task by user
-*/
 
 
 const dbConnect = async ():Promise<void> =>{
