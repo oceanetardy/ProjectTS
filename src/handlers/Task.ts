@@ -21,7 +21,6 @@ const addTask = async (req: Request, res: Response):Promise<void>=> {
 
 const updateTask = async (req: Request, res: Response): Promise<void> =>
 {
-    console.log()
     // Récupération de l'identifiant de la tâche
     const id: string = req.params.id;
 
